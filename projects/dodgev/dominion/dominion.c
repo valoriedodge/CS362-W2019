@@ -658,11 +658,15 @@ void smithy_card(int handPos, int currentPlayer, struct gameState *state){
 void adventurer_card(int z, int drawntreasure, int handPos, int currentPlayer, struct gameState *state, int temphand[]){
   while(drawntreasure<2){
     if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
-      shuffle(currentPlayer, state);
+      if(state->discardCount[currentPlayer] >0){
+        shuffle(currentPlayer, state);
+      }else{
+        break;
+      }
     }
     drawCard(currentPlayer, state);
     int cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-    if (cardDrawn == silver || cardDrawn == gold)
+    if (cardDrawn == copper ||cardDrawn == gold)
       drawntreasure++;
     else{
       temphand[z]=cardDrawn;

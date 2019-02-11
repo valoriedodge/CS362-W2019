@@ -27,8 +27,7 @@ int main() {
 	cardEffect(great_hall, choice1, choice2, choice3, &testGame, handpos, &bonus);
 
 	int newCards = 1;
-
-  assertEqual(testGame.handCount[curr_player], game.handCount[curr_player] + newCards - 1, &failures);
+	assertEqual(testGame.handCount[curr_player], game.handCount[curr_player] + newCards - 1, &failures);
   printf("hand count = %d, expected = %d\n", testGame.handCount[curr_player], game.handCount[curr_player] + newCards - 1);
 
   assertEqual(testGame.deckCount[curr_player], game.deckCount[curr_player] -newCards, &failures);
@@ -37,8 +36,8 @@ int main() {
   assertEqual(testGame.discardCount[curr_player], game.discardCount[curr_player] + 1, &failures);
   printf("discard count = %d, expected = %d\n", testGame.discardCount[curr_player], game.discardCount[curr_player] + 1);
 
-  assertEqual(testGame.numActions, game.numActions - 1, &failures);
-  printf("action count = %d, expected = %d\n", testGame.numActions, game.numActions);
+  assertEqual(testGame.numActions, game.numActions + 1, &failures);
+  printf("action count = %d, expected = %d\n", testGame.numActions, game.numActions + 1);
 
   assertEqual(testGame.coins, game.coins, &failures);
   printf("coins = %d, expected = %d\n", testGame.coins, game.coins);
@@ -47,9 +46,7 @@ int main() {
   printf("buys = %d, expected = %d\n", testGame.numBuys, game.numBuys);
 
   for(i=0; i<treasure_map+1;i++){
-    if(i != great_hall){
-      curr_failure = checkCardPiles(i, &game, &testGame);
-    }
+    curr_failure = checkCardPiles(i, &game, &testGame);
   }
   if(curr_failure == 0){
     printSuccess();

@@ -33,17 +33,15 @@ int main() {
   printf("deck count = %d, expected = %d\n", testGame.deckCount[curr_player], game.deckCount[curr_player] -3);
   assertEqual(testGame.discardCount[curr_player], game.discardCount[curr_player] + 1, &failures);
   printf("discard count = %d, expected = %d\n", testGame.discardCount[curr_player], game.discardCount[curr_player] + 1);
-  assertEqual(testGame.numActions, game.numActions - 1, &failures);
-  printf("action count = %d, expected = %d\n", testGame.numActions, game.numActions - 1);
+  assertEqual(testGame.numActions, game.numActions, &failures);
+  printf("action count = %d, expected = %d\n", testGame.numActions, game.numActions);
   assertEqual(testGame.coins, game.coins, &failures);
   printf("coins = %d, expected = %d\n", testGame.coins, game.coins);
   assertEqual(testGame.numBuys, game.numBuys, &failures);
   printf("buys = %d, expected = %d\n", testGame.numBuys, game.numBuys);
 
   for(i=0; i<treasure_map+1;i++){
-    if(i != smithy){
-      curr_failure = checkCardPiles(i, &game, &testGame);
-    }
+    curr_failure = checkCardPiles(i, &game, &testGame);
   }
   if(curr_failure == 0){
     printSuccess();
