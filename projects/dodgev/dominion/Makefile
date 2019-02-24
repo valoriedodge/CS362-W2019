@@ -6,6 +6,21 @@ rngs.o: rngs.h rngs.c
 dominion.o: dominion.h dominion.c rngs.o
 	gcc -c dominion.c -g  $(CFLAGS)
 
+randomtestadventurer: random_tester_helper.c randomtestadventurer.c dominion.o test_helper.c rngs.o
+	gcc -o randomtestadventurer random_tester_helper.c randomtestadventurer.c dominion.o test_helper.c rngs.o $(CFLAGS)
+	# ./randomtestadventurer >> randomtestadventurer.out
+	# gcov dominion.c >> randomtestadventurer.out
+
+randomtestcard1: random_tester_helper.c randomtestcard1.c dominion.o test_helper.c rngs.o
+	gcc -o randomtestcard1 random_tester_helper.c randomtestcard1.c dominion.o test_helper.c rngs.o $(CFLAGS)
+	./randomtestcard1 >> randomtestcard1.out
+	gcov dominion.c >> randomtestcard1.out
+
+randomtestcard2: random_tester_helper.c randomtestcard2.c dominion.o test_helper.c rngs.o
+	gcc -o randomtestcard2 random_tester_helper.c randomtestcard2.c dominion.o test_helper.c rngs.o $(CFLAGS)
+	./randomtestcard2 >> randomtestcard2.out
+	gcov dominion.c >> randomtestcard2.out
+
 unittest1: unittest1.c test_helper.c dominion.o rngs.o
 	gcc -o unittest1 -g unittest1.c test_helper.c dominion.o rngs.o $(CFLAGS)
 
@@ -103,3 +118,6 @@ all: playdom player
 
 clean:
 	rm -f *.o playdom.exe playdom unittest1 player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+
+clearoff random:
+	rm -f randomtestcard1 randomtestcard2 randomtestadventurer *.o *.gcov *.gcda *.gcno *.so *.out
