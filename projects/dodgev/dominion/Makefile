@@ -8,8 +8,8 @@ dominion.o: dominion.h dominion.c rngs.o
 
 randomtestadventurer: random_tester_helper.c randomtestadventurer.c dominion.o test_helper.c rngs.o
 	gcc -o randomtestadventurer random_tester_helper.c randomtestadventurer.c dominion.o test_helper.c rngs.o $(CFLAGS)
-	# ./randomtestadventurer >> randomtestadventurer.out
-	# gcov dominion.c >> randomtestadventurer.out
+	./randomtestadventurer >> randomtestadventurer.out
+	gcov dominion.c >> randomtestadventurer.out
 
 randomtestcard1: random_tester_helper.c randomtestcard1.c dominion.o test_helper.c rngs.o
 	gcc -o randomtestcard1 random_tester_helper.c randomtestcard1.c dominion.o test_helper.c rngs.o $(CFLAGS)
