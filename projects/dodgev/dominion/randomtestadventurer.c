@@ -11,6 +11,7 @@ int create_random_game(int salt, struct gameState * game);
 
 // main function to test the functionality of adventurer kingdom card
 int checkAdventurer(int curr_player, struct gameState *game){
+
   int curr_failure = 0, failures = 0;
   // int coin_card_1 = silver, coin_card_2 = gold;
   int i, handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
@@ -103,12 +104,14 @@ int checkAdventurer(int curr_player, struct gameState *game){
 int main() {
   int n, failures = 0;
   // time_t t;
-  srand(time(NULL));
+  // srand(time(NULL));
+  SelectStream(1);
+  PutSeed((long)13);
+  struct gameState game;
 
   // Number of times to create a random game to test adventure
   for( n = 0 ; n < 100 ; n++ ) {
       printf("\n----------------- Testing Card: adventurer %d ----------------\n", n);
-      struct gameState game;
       int player = create_random_game(n, &game);
       failures += checkAdventurer(player, &game);
       printf("Failures: %d", failures);

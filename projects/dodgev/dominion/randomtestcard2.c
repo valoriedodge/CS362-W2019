@@ -60,7 +60,8 @@ int checkSmithy(int curr_player, struct gameState *game){
 int main() {
   int n, failures = 0;
   // time_t t;
-  srand(time(NULL));
+  SelectStream(1);
+  PutSeed((long)13);
 
   // Number of times to create a random game to test smithy
   for( n = 0 ; n < 100 ; n++ ) {
